@@ -5,7 +5,6 @@ const theButtons = document.querySelectorAll("#buttonHolder img");
 const puzzleBoard = document.querySelector(".puzzle-board");
 const puzzlePieces = document.querySelectorAll(".puzzle-pieces img");
 const dropZones = document.querySelectorAll(".drop-zone");
-const puzzlePieceDiv = document.querySelector(".puzzle-pieces")
 let draggedPiece;
 
 //functions
@@ -14,9 +13,9 @@ function changeBGImage(event) {
     //Method 1
     //console.log(this.id);
     //background-image: url('../images/backGround0.jpg');
-    puzzleBoard.style.backgroundImage = `url('images/backGround${this.id}.jpg')`;
-    let currentid = this.id;
-resetPuzzle();
+    console.log(event.currentTarget.id);
+    puzzleBoard.style.backgroundImage = `url('./images/backGround${event.currentTarget.id}.jpg')`;
+//resetPuzzle();
     //fix goes here
 
     //puzzlePieces.forEach(piece => puzzlePieceDiv (appendchild))
@@ -38,17 +37,25 @@ function handleOver(e) {
     console.log("Dragged Over")
 }
 
-function handleDrop(e) { 
+function handleDrop() { 
     console.log("Dropped!");
+    draggedPiece = this;
 }
     //this is where the fix will go.
     //going to use an if statement
     //if ()
 
-    if (this.dropZones>=1) { 
+    if (this.dropZones>=0) { 
     this.appendChild(draggedPiece);
-    e.preventDefault(); 
 }  
+
+else if (this.dropzone>=1) {
+    resetPuzzle
+}
+
+function resetPuzzle() {
+    console.log("Puzzle reset!")
+}
 
 //eventListeners
 theButtons.forEach(button => button.addEventListener("click", changeBGImage));
